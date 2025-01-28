@@ -2,10 +2,12 @@
   <h1>Hello World</h1>
   <mat-slide-toggle>Toggle me</mat-slide-toggle>
 
-  <form action="" class="form-container flex flex-col gap-4" [formGroup]="form">
+  <form action="" class="form-container flex flex-col gap-4" [formGroup]="loginForm">
     <mat-form-field appearance="fill">
       <mat-label>Username</mat-label>
-      <input matInput placeholder="Username or Email" formControlName="name" required />
+      <input matInput placeholder="Username or Email" formControlName="loginUserName" required />
+
+      <mat-error>Name is required</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-select placeholder="Favorite food">

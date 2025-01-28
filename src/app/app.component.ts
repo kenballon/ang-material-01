@@ -6,7 +6,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 
 @Component({
@@ -18,19 +18,14 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 export class AppComponent {
   // title = 'ang-material';
-  fb = inject(FormBuilder);
 
-  form = this.fb.group({  
-    name: [''],
-    email: [''],
-    password: [''],
-    confirmPassword: [''],
-    address: [''],
-    city: [''],
-    state: [''],
-    zip: [''],
-    country: [''],
-    phone: [''],
-    dob: ['']
-  });
+  loginForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {
+    this.loginForm = this.formBuilder.group({
+      loginUserName: ['', Validators.required, 
+        Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$|^[a-zA-Z0-9._-]{3,}$')
+      ],
+    });
+  }
 }
